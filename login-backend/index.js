@@ -3,7 +3,6 @@ const app = express();
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const PORT = 3000;
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 
@@ -11,9 +10,8 @@ app.use(cors());
 
 //  mongo connection
 mongoose.Promise = global.Promise;
-const MONGODB_URI =
-  "mongodb+srv://rpragacs:Vikipraga1125@cluster0.kv3528y.mongodb.net/test?retryWrites=true&w=majority";
-
+const MONGODB_URI = process.env.MONGODB_URI;
+const PORT = process.env.PORT;
 mongoose
   .connect(MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
